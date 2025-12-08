@@ -1,0 +1,6 @@
+@WomenEmpower.API_HostAddress = http://localhost:5032
+
+GET {{WomenEmpower.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
