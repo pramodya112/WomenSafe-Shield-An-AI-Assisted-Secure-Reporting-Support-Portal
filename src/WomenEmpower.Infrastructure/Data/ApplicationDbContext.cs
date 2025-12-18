@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using WomenEmpower.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace WomenEmpower.Infrastructure.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -17,6 +18,8 @@ namespace WomenEmpower.Infrastructure.Data
 
         protected override void OnModelCreating (ModelBuilder modelbuilder)
         {
+            base.OnModelCreating(modelbuilder);
+
             modelbuilder.Entity<Evidence>()
                 .HasOne(e => e.Report)
                 .WithMany(r => r.Evidence)
