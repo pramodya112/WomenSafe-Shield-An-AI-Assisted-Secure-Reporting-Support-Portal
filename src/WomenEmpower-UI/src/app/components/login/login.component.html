@@ -1,0 +1,117 @@
+<div class="login-wrapper">
+
+	<!-- Emergency Exit Button -->
+	<a href="https://www.google.com" class="emergency-exit" title="Quick Exit">
+		<i class="bi bi-x-circle-fill"></i> Quick Exit
+	</a>
+
+	<div class="container">
+		<div class="row min-vh-100 align-items-center justify-content-center py-5">
+
+			<!-- Left Panel -->
+			<div class="col-lg-5 d-none d-lg-flex flex-column justify-content-center pe-5">
+				<div class="brand mb-4">
+					<span class="brand-icon">&#9893;</span>
+					<span class="brand-name">SafeHer</span>
+				</div>
+				<h1 class="hero-heading">You are <span class="highlight">safe</span> here.</h1>
+				<p class="hero-sub">This is a confidential space for women to report abuse, access AI tools, and find support. Your identity is always protected.</p>
+
+				<div class="trust-badges mt-4">
+					<div class="badge-item">
+						<i class="bi bi-shield-lock-fill"></i>
+						<span>Anonymous & Encrypted</span>
+					</div>
+					<div class="badge-item">
+						<i class="bi bi-eye-slash-fill"></i>
+						<span>Private & Confidential</span>
+					</div>
+					<div class="badge-item">
+						<i class="bi bi-heart-fill"></i>
+						<span>Survivor-First Approach</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Login Card -->
+			<div class="col-lg-5 col-md-8 col-12">
+				<div class="login-card">
+
+					<!-- Mobile Brand -->
+					<div class="d-lg-none text-center mb-4">
+						<span class="brand-icon">&#9893;</span>
+						<span class="brand-name ms-2">SafeHer</span>
+					</div>
+
+					<h2 class="card-title">Welcome back</h2>
+					<p class="card-subtitle">Log in to access your secure portal</p>
+
+					<!-- Error Message -->
+					<div *ngIf="errorMessage" class="alert-error">
+						<i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
+					</div>
+
+					<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<div class="input-wrap">
+								<i class="bi bi-envelope input-icon"></i>
+								<input id="email"
+											 type="email"
+											 formControlName="email"
+											 placeholder="you@example.com"
+											 class="form-input"
+											 [class.input-error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+							</div>
+							<span class="error-text" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+								Please enter a valid email address.
+							</span>
+						</div>
+
+						<div class="form-group">
+							<label for="password">Password</label>
+							<div class="input-wrap">
+								<i class="bi bi-lock input-icon"></i>
+								<input id="password"
+											 type="password"
+											 formControlName="password"
+											 placeholder="Enter your password"
+											 class="form-input"
+											 [class.input-error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+							</div>
+							<span class="error-text" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+								Password is required.
+							</span>
+						</div>
+
+						<button type="submit" class="btn-login" [disabled]="!loginForm.valid || isLoading">
+							<span *ngIf="!isLoading">Login Securely</span>
+							<span *ngIf="isLoading">
+								<span class="spinner"></span> Logging in...
+							</span>
+						</button>
+
+					</form>
+
+					<div class="divider"><span>or</span></div>
+
+					<div class="text-center">
+						<p class="register-link">
+							New here?
+							<a routerLink="/register">Create a safe account</a>
+						</p>
+						<p class="anonymous-link">
+							<a routerLink="/report">
+								<i class="bi bi-incognito me-1"></i>
+								Continue anonymously without logging in
+							</a>
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

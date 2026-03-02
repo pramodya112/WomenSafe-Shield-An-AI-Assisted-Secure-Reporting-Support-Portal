@@ -1,0 +1,68 @@
+<router-outlet></router-outlet>
+
+<!-- ===== FLOATING RIGHT SIDEBAR ===== -->
+<div class="floating-sidebar" [class.open]="sidebarOpen">
+
+  <!-- Toggle Button -->
+  <button class="sidebar-toggle-btn" (click)="toggleSidebar()">
+    <i class="bi" [class.bi-chevron-right]="sidebarOpen" [class.bi-chevron-left]="!sidebarOpen"></i>
+  </button>
+
+  <!-- Sidebar Content -->
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <i class="bi-shield-lock-fill me-2"></i>
+      <span>Quick Access</span>
+    </div>
+
+    <ul class="sidebar-links">
+
+      <!-- Login / Logout -->
+      <li>
+        <a *ngIf="!isLoggedIn" routerLink="/login" class="sidebar-link" (click)="closeSidebar()">
+          <i class="bi-person-fill"></i>
+          <span>Login</span>
+        </a>
+        <a *ngIf="isLoggedIn" href="#" class="sidebar-link" (click)="logout(); closeSidebar()">
+          <i class="bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li>
+
+      <!-- Track My Report -->
+      <li>
+        <a routerLink="/track" class="sidebar-link" (click)="closeSidebar()">
+          <i class="bi-search"></i>
+          <span>Track My Report</span>
+        </a>
+      </li>
+
+      <!-- AI Support Chatbot -->
+      <li>
+        <a routerLink="/chatbot" class="sidebar-link" (click)="closeSidebar()">
+          <i class="bi-robot"></i>
+          <span>AI Support Chatbot</span>
+        </a>
+      </li>
+
+      <!-- Fake Profile Checker -->
+      <li>
+        <a routerLink="/profile-checker" class="sidebar-link" (click)="closeSidebar()">
+          <i class="bi-person-x-fill"></i>
+          <span>Fake Profile Checker</span>
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- Quick Exit -->
+    <div class="sidebar-exit">
+      <a href="https://www.google.com" class="sidebar-exit-btn">
+        <i class="bi-x-circle-fill me-2"></i> Quick Exit
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay when sidebar is open -->
+<div class="sidebar-overlay" [class.active]="sidebarOpen" (click)="closeSidebar()"></div>

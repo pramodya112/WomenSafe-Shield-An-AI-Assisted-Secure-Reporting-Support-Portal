@@ -9,43 +9,43 @@ namespace WomenEmpower.API.Services
     public class TokenService
     {
         private readonly IConfiguration _config;
+
         public TokenService(IConfiguration config)
         {
             _config = config;
         }
 
-        public string CreateToken(ApplicationUser user) // Fixed spelling: Token
+        public string CreateToken(ApplicationUser user, IList<string> roles)
         {
+            var jwtSettings = _config.GetSection("JwtSettings");
+            var secretKey = jwtSettings["SecretKey"]!;
+            var issuer = jwtSettings["Issuer"]!;
+            var audience = jwtSettings["Audience"]!;
+            var expiryMins = int.TryParse(jwtSettings["ExpiryMinutes"], out var mins) ? mins : 1440;
+
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, user.Email ?? ""),
-                new Claim(ClaimTypes.GivenName, user.OrganizationName ?? "")
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Name,  user.UserName ?? user.Email ?? ""),
+                new Claim(ClaimTypes.Email, user.Email    ?? ""),
             };
 
-            // FIX: Match these keys exactly to your appsettings.json
-            var secretKey = _config["JwtSettings:SecretKey"]; // Was "SecretKet"
-            if (string.IsNullOrEmpty(secretKey)) throw new Exception("SecretKey is missing!");
+            // Add all roles as claims — this is what [Authorize(Roles = "Admin")] checks
+            foreach (var role in roles)
+                claims.Add(new Claim(ClaimTypes.Role, role));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            // FIX: Match duration key
-            var duration = _config["JwtSettings:DurationInMinutes"]; // Was "JWTSettings"
-            var expiryMinutes = double.TryParse(duration, out var result) ? result : 60;
+            var token = new JwtSecurityToken(
+                issuer: issuer,
+                audience: audience,
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(expiryMins),
+                signingCredentials: creds
+            );
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(expiryMinutes),
-                SigningCredentials = credentials,
-                Issuer = _config["JwtSettings:Issuer"],   // Fixed: Issuer
-                Audience = _config["JwtSettings:Audience"] // Fixed: Audience
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

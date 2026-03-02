@@ -1,0 +1,426 @@
+<!-- ═══════════════════════════════════
+     NAVBAR — matches home exactly
+═══════════════════════════════════ -->
+<nav class="unav" id="uNav">
+  <a class="unav-brand" routerLink="/">
+    <div class="unav-brand-icon">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <path d="M13 2L15.8 9.2H23.5L17.4 13.8L19.7 21L13 16.4L6.3 21L8.6 13.8L2.5 9.2H10.2L13 2Z" fill="#c8396b" />
+        <circle cx="13" cy="13" r="4" fill="#1a0a14" opacity="0.5" />
+      </svg>
+    </div>
+    <div class="unav-brand-text">
+      <span class="unav-brand-name">SafeReport</span>
+      <span class="unav-brand-tagline">Protection &amp; Support</span>
+    </div>
+  </a>
+
+  <div class="unav-links" id="uNavLinks">
+    <a class="unav-link" routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <a class="unav-link" routerLink="/about">About</a>
+    <div class="unav-dropdown-wrap">
+      <button class="unav-link unav-dropdown-trigger" aria-expanded="false">
+        Services <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3.5L5 6.5L8 3.5" /></svg>
+      </button>
+      <div class="unav-dropdown">
+        <div class="unav-dropdown-inner">
+          <a class="unav-drop-item" routerLink="/report">
+            <span class="unav-drop-icon"><i class="bi-flag-fill"></i></span>
+            <span><strong>Submit a Report</strong><em>File a new case securely</em></span>
+          </a>
+          <a class="unav-drop-item" routerLink="/track">
+            <span class="unav-drop-icon"><i class="bi-search"></i></span>
+            <span><strong>Track My Report</strong><em>Check your case status</em></span>
+          </a>
+          <a class="unav-drop-item" routerLink="/chatbot">
+            <span class="unav-drop-icon"><i class="bi-robot"></i></span>
+            <span><strong>AI Support Chatbot</strong><em>24/7 guided assistance</em></span>
+          </a>
+          <a class="unav-drop-item" routerLink="/profile-checker">
+            <span class="unav-drop-icon"><i class="bi-person-x-fill"></i></span>
+            <span><strong>Fake Profile Checker</strong><em>Verify suspicious accounts</em></span>
+          </a>
+          <a class="unav-drop-item unav-drop-donate" routerLink="/donate">
+            <span class="unav-drop-icon"><i class="bi-heart-fill"></i></span>
+            <span><strong>Donate</strong><em>Support our mission</em></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <a class="unav-link" routerLink="/causes">Causes</a>
+    <a class="unav-link" routerLink="/news">News</a>
+    <a class="unav-link" routerLink="/contact">Contact</a>
+  </div>
+
+  <div class="unav-right">
+    <a routerLink="/report" class="unav-cta">
+      <i class="bi-shield-exclamation"></i>
+      <span>Report Now</span>
+    </a>
+    <button class="unav-burger" id="uNavBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="unav-drawer" id="uNavDrawer">
+  <div class="unav-drawer-inner">
+    <a class="unav-drawer-link" routerLink="/">Home</a>
+    <a class="unav-drawer-link" routerLink="/about">About</a>
+    <a class="unav-drawer-link" routerLink="/report">Submit a Report</a>
+    <a class="unav-drawer-link" routerLink="/track">Track My Report</a>
+    <a class="unav-drawer-link" routerLink="/chatbot">AI Support Chatbot</a>
+    <a class="unav-drawer-link" routerLink="/profile-checker">Fake Profile Checker</a>
+    <a class="unav-drawer-link" routerLink="/causes">Causes</a>
+    <a class="unav-drawer-link" routerLink="/news">News</a>
+    <a class="unav-drawer-link" routerLink="/contact">Contact</a>
+    <a class="unav-cta mt-3 d-inline-flex" routerLink="/report">
+      <i class="bi-shield-exclamation"></i> Report Now
+    </a>
+  </div>
+</div>
+<div class="unav-backdrop" id="uNavBackdrop"></div>
+
+<!-- ═══════════════════════════════════
+     HERO BANNER
+═══════════════════════════════════ -->
+<div class="rp-hero">
+  <div class="rp-hero-blobs">
+    <span class="rpb rpb-1"></span>
+    <span class="rpb rpb-2"></span>
+    <span class="rpb rpb-3"></span>
+  </div>
+  <div class="rp-hero-content">
+    <div class="rp-hero-badge">
+      <i class="bi bi-shield-lock-fill"></i> Confidential &amp; Anonymous
+    </div>
+    <h1 class="rp-hero-title">Report an <em>Incident</em></h1>
+    <p class="rp-hero-sub">
+      Your identity is always protected. Everything you share stays confidential.<br>
+      You are safe here — we believe you.
+    </p>
+    <div class="rp-hero-pills">
+      <span><i class="bi bi-lock-fill"></i> End-to-end encrypted</span>
+      <span><i class="bi bi-eye-slash-fill"></i> IP never logged</span>
+      <span><i class="bi bi-person-dash"></i> Fully anonymous</span>
+      <span><i class="bi bi-clock-fill"></i> Reviewed in 24h</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════ -->
+<main class="rp-main">
+  <div class="rp-wrap">
+    <div class="rp-grid">
+
+      <!-- ── LEFT SIDEBAR ── -->
+      <aside class="rp-aside">
+
+        <div class="rpa-card rpa-warm">
+          <div class="rpa-heart"><i class="bi bi-heart-fill"></i></div>
+          <h3>You are not alone</h3>
+          <p>Thousands of women have found the courage to speak up here. Your story matters. We are with you every step of the way.</p>
+        </div>
+
+        <div class="rpa-card">
+          <h4 class="rpa-card-title"><i class="bi bi-list-check"></i> What happens next</h4>
+          <ol class="rpa-steps">
+            <li>
+              <span class="rpa-num">1</span>
+              <span>Your submission is encrypted &amp; queued for review</span>
+            </li>
+            <li>
+              <span class="rpa-num">2</span>
+              <span>Our case workers assess severity and next steps</span>
+            </li>
+            <li>
+              <span class="rpa-num">3</span>
+              <span>You'll receive guidance on your options</span>
+            </li>
+            <li>
+              <span class="rpa-num">4</span>
+              <span>Your identity is protected throughout the entire process</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="rpa-card rpa-support">
+          <h4 class="rpa-card-title"><i class="bi bi-telephone-fill"></i> Emergency Support</h4>
+          <p class="rpa-hotline-num"><a href="tel:1930">1930</a></p>
+          <p class="rpa-hotline-label">National Helpline · 24/7 · Free &amp; Confidential</p>
+          <a href="https://www.google.com" class="rpa-exit">
+            <i class="bi bi-x-circle-fill"></i> Quick Exit — Leave Safely
+          </a>
+        </div>
+
+      </aside>
+
+      <!-- ── FORM ── -->
+      <section class="rp-form-col">
+        <div class="rp-form-card">
+
+          <div class="rp-form-head">
+            <div class="rp-form-head-icon"><i class="bi bi-shield-heart-fill"></i></div>
+            <div>
+              <h2>Anonymous Incident Report</h2>
+              <p>All fields marked * are required. Others are optional — share only what feels right.</p>
+            </div>
+          </div>
+
+          <!-- Alerts -->
+          <div *ngIf="errorMessage" class="rp-alert rp-alert-err">
+            <i class="bi bi-exclamation-triangle-fill"></i> {{ errorMessage }}
+          </div>
+          <div *ngIf="successMessage" class="rp-alert rp-alert-ok">
+            <i class="bi bi-check-circle-fill"></i> {{ successMessage }}
+          </div>
+
+          <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+
+            <!-- Reporter type -->
+            <div class="rp-field">
+              <label class="rp-label">I am reporting as *</label>
+              <div class="rp-type-row">
+                <button type="button" class="rp-type-btn"
+                        [class.active]="isReporterType('victim')"
+                        (click)="setReporterType('victim')">
+                  <i class="bi bi-person-fill"></i> I am the victim
+                </button>
+                <button type="button" class="rp-type-btn"
+                        [class.active]="isReporterType('behalf')"
+                        (click)="setReporterType('behalf')">
+                  <i class="bi bi-people-fill"></i> Reporting for someone
+                </button>
+              </div>
+            </div>
+
+            <!-- Incident type -->
+            <div class="rp-field">
+              <label class="rp-label">Type of Incident *</label>
+              <div class="rp-chips">
+                <button *ngFor="let type of incidentTypeOptions"
+                        type="button" class="rp-chip"
+                        [class.on]="isIncidentTypeSelected(type)"
+                        (click)="toggleIncidentType(type)">
+                  {{ type }}
+                </button>
+              </div>
+            </div>
+
+            <!-- Severity -->
+            <div class="rp-field">
+              <label class="rp-label">Urgency Level <span class="rp-hint">— how urgent is this?</span></label>
+              <div class="rp-sev-row">
+                <button type="button" class="rp-sev low"
+                        [class.on]="isSeverity('low')" (click)="setSeverity('low')">
+                  <i class="bi bi-circle-fill"></i> Low
+                </button>
+                <button type="button" class="rp-sev mod"
+                        [class.on]="isSeverity('moderate')" (click)="setSeverity('moderate')">
+                  <i class="bi bi-circle-fill"></i> Moderate
+                </button>
+                <button type="button" class="rp-sev high"
+                        [class.on]="isSeverity('high')" (click)="setSeverity('high')">
+                  <i class="bi bi-circle-fill"></i> High — Immediate
+                </button>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="rp-field">
+              <label class="rp-label">What happened? *</label>
+              <textarea formControlName="description" class="rp-textarea"
+                        placeholder="Describe what happened in as much or as little detail as you feel comfortable sharing. There is no right or wrong way to tell your story. Take your time."></textarea>
+            </div>
+
+            <!-- Section: When & Where -->
+            <div class="rp-sec-head"><i class="bi bi-geo-alt-fill"></i> When &amp; Where</div>
+
+            <div class="rp-row-2">
+              <div class="rp-field">
+                <label class="rp-label">Date of Incident</label>
+                <div class="rp-inp-wrap">
+                  <i class="bi bi-calendar3 rp-ico"></i>
+                  <input type="date" formControlName="incidentDate" class="rp-input">
+                </div>
+              </div>
+              <div class="rp-field">
+                <label class="rp-label">Approximate Time</label>
+                <div class="rp-inp-wrap">
+                  <i class="bi bi-clock rp-ico"></i>
+                  <input type="time" formControlName="incidentTime" class="rp-input">
+                </div>
+              </div>
+            </div>
+
+            <div class="rp-field">
+              <label class="rp-label">Location <span class="rp-hint">— city, area, or describe</span></label>
+              <div class="rp-inp-wrap">
+                <i class="bi bi-pin-map-fill rp-ico"></i>
+                <input type="text" formControlName="location" class="rp-input"
+                       placeholder="e.g. Colombo Fort, near the station…">
+              </div>
+            </div>
+
+            <!-- Section: Your Details -->
+            <div class="rp-sec-head"><i class="bi bi-person-badge-fill"></i> Your Details (Optional)</div>
+
+            <div class="rp-anon-note">
+              <i class="bi bi-lock-fill"></i>
+              These fields are completely optional. You can submit without sharing any personal information.
+            </div>
+
+            <div class="rp-row-2">
+              <div class="rp-field">
+                <label class="rp-label">Name or Alias</label>
+                <div class="rp-inp-wrap">
+                  <i class="bi bi-person rp-ico"></i>
+                  <input type="text" formControlName="nameOrAlias" class="rp-input" placeholder="What may we call you?">
+                </div>
+              </div>
+              <div class="rp-field">
+                <label class="rp-label">Contact Email</label>
+                <div class="rp-inp-wrap">
+                  <i class="bi bi-envelope rp-ico"></i>
+                  <input type="email" formControlName="contactEmail" class="rp-input" placeholder="For follow-up (optional)">
+                </div>
+              </div>
+            </div>
+
+            <!-- Section: Evidence -->
+            <div class="rp-sec-head"><i class="bi bi-paperclip"></i> Evidence (Optional)</div>
+
+            <div class="rp-field">
+              <div class="rp-upload" [class.has-files]="selectedFiles.length > 0">
+                <input #fileInput type="file" multiple
+                       accept="image/*,video/*,.pdf,.doc,.docx"
+                       (change)="onFilesSelected($event)">
+                <i class="bi bi-cloud-upload-fill rp-upload-ico"></i>
+                <p><strong>Click to upload</strong> or drag &amp; drop</p>
+                <small>Photos, videos, PDF documents (max 50 MB total)</small>
+              </div>
+
+              <!-- Selected file list -->
+              <div *ngIf="selectedFiles.length > 0" class="rp-file-list">
+                <div *ngFor="let file of selectedFiles; let i = index" class="rp-file-item">
+                  <i class="bi bi-file-earmark-fill"></i>
+                  <span class="rp-file-name">{{ file.name }}</span>
+                  <span class="rp-file-size">{{ formatFileSize(file.size) }}</span>
+                  <button type="button" class="rp-file-remove" (click)="removeFile(i)" title="Remove">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="rp-field">
+              <label class="rp-label">Additional Notes <span class="rp-hint">— anything else you'd like to share</span></label>
+              <textarea formControlName="additionalNotes" class="rp-textarea rp-textarea-sm"
+                        placeholder="Witness names, previous incidents, relevant context…"></textarea>
+            </div>
+
+            <!-- Submit -->
+            <div class="rp-submit-area">
+              <button type="submit" class="rp-submit" [disabled]="reportForm.invalid || isLoading">
+                <span *ngIf="!isLoading">
+                  <i class="bi bi-shield-lock-fill"></i> Submit My Report Securely
+                </span>
+                <span *ngIf="isLoading">
+                  <span class="rp-spinner"></span> Submitting securely…
+                </span>
+              </button>
+              <p class="rp-submit-note">
+                <i class="bi bi-lock-fill"></i>
+                256-bit encrypted · You'll receive a private tracking code
+              </p>
+            </div>
+
+          </form>
+
+          <div class="rp-form-footer">
+            <a routerLink="/report-anonymous">
+              <i class="bi bi-incognito"></i> Continue without submitting any personal details
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════════════════════════
+     FOOTER — matches home exactly
+═══════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-3 col-12 mb-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <svg width="32" height="32" viewBox="0 0 26 26" fill="none">
+            <path d="M13 2L15.8 9.2H23.5L17.4 13.8L19.7 21L13 16.4L6.3 21L8.6 13.8L2.5 9.2H10.2L13 2Z" fill="#c8396b" />
+          </svg>
+          <span class="footer-brand-name">SafeReport</span>
+        </div>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.7;">
+          A safe, anonymous platform for women to report incidents and access support.
+        </p>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-12 mb-4">
+        <h5 class="site-footer-title mb-3">Quick Links</h5>
+        <ul class="footer-menu">
+          <li class="footer-menu-item"><a routerLink="/" class="footer-menu-link">Home</a></li>
+          <li class="footer-menu-item"><a routerLink="/report" class="footer-menu-link">Submit a Report</a></li>
+          <li class="footer-menu-item"><a routerLink="/track" class="footer-menu-link">Track My Report</a></li>
+          <li class="footer-menu-item"><a routerLink="/chatbot" class="footer-menu-link">AI Support Chatbot</a></li>
+          <li class="footer-menu-item"><a routerLink="/profile-checker" class="footer-menu-link">Fake Profile Checker</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-12 mx-auto">
+        <h5 class="site-footer-title mb-3">Contact Information</h5>
+        <p class="text-white d-flex mb-2">
+          <i class="bi-telephone me-2"></i>
+          <a href="tel:305-240-9671" class="site-footer-link">305-240-9671</a>
+        </p>
+        <p class="text-white d-flex">
+          <i class="bi-envelope me-2"></i>
+          <a href="mailto:info@company.com" class="site-footer-link">info&#64;company.com</a>
+        </p>
+        <p class="text-white d-flex mt-3">
+          <i class="bi-geo-alt me-2"></i>
+          Akershusstranda 20, 0150 Oslo, Norway
+        </p>
+        <a href="https://www.google.com" class="rpa-exit mt-3 d-inline-flex">
+          <i class="bi bi-x-circle-fill me-1"></i> Quick Exit
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="site-footer-bottom">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-12">
+          <p class="copyright-text mb-0">
+            Copyright © 2025 <span style="color:#c8396b;font-weight:700;">SafeReport</span> · Protection &amp; Support Platform
+          </p>
+        </div>
+        <div class="col-lg-6 col-12 d-flex justify-content-center mt-3 mt-lg-0">
+          <ul class="social-icon">
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-linkedin"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

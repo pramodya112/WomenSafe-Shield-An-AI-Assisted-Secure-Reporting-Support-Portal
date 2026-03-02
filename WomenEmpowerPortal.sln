@@ -11,6 +11,32 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WomenEmpower.Core", "src\Wo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WomenEmpower.Infrastructure", "src\WomenEmpower.Infrastructure\WomenEmpower.Infrastructure.csproj", "{594217B4-D471-4854-8036-B4CB5D8D428F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		report.service.ts = report.service.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{3E3CF76E-D1D5-4628-B627-E8CCD664EE6A}"
+	ProjectSection(SolutionItems) = preProject
+		app.component.html = app.component.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WomenEmpower-UI", "WomenEmpower-UI", "{DDEA2FD4-1194-452B-8AEA-C671258BF5B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{A2F1A4ED-6F84-46F1-9DC3-1B2346851A21}"
+	ProjectSection(SolutionItems) = preProject
+		app.config.ts = app.config.ts
+		app.routes.ts = app.routes.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "report-form", "report-form", "{2C2128FD-C8DE-4480-AAB8-DD91442B47B2}"
+	ProjectSection(SolutionItems) = preProject
+		report-form.component.html = report-form.component.html
+		report-form.component.ts = report-form.component.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{A7D6485D-9CFB-46DD-A3F9-04CF22CC6D4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,5 +91,14 @@ Global
 		{C02D90B4-FD3A-4CD0-9339-223E55F49B85} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{417E94CE-AC4F-45C8-A202-8D2CB8C38A51} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{594217B4-D471-4854-8036-B4CB5D8D428F} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {3E3CF76E-D1D5-4628-B627-E8CCD664EE6A}
+		{3E3CF76E-D1D5-4628-B627-E8CCD664EE6A} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{DDEA2FD4-1194-452B-8AEA-C671258BF5B2} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{A2F1A4ED-6F84-46F1-9DC3-1B2346851A21} = {3E3CF76E-D1D5-4628-B627-E8CCD664EE6A}
+		{2C2128FD-C8DE-4480-AAB8-DD91442B47B2} = {A2F1A4ED-6F84-46F1-9DC3-1B2346851A21}
+		{A7D6485D-9CFB-46DD-A3F9-04CF22CC6D4C} = {3E3CF76E-D1D5-4628-B627-E8CCD664EE6A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECDC476D-0FB4-41B7-83CC-B0580DFA9F87}
 	EndGlobalSection
 EndGlobal

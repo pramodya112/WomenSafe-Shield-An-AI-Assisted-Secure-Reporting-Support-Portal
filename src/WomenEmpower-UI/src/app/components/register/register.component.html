@@ -1,0 +1,146 @@
+<div class="login-wrapper">
+
+	<!-- Emergency Exit Button -->
+	<a href="https://www.google.com" class="emergency-exit" title="Quick Exit">
+		<i class="bi bi-x-circle-fill"></i> Quick Exit
+	</a>
+
+	<div class="container">
+		<div class="row min-vh-100 align-items-center justify-content-center py-5">
+
+			<!-- Left Panel -->
+			<div class="col-lg-5 d-none d-lg-flex flex-column justify-content-center pe-5">
+				<div class="brand mb-4">
+					<span class="brand-icon">&#9893;</span>
+					<span class="brand-name">SafeHer</span>
+				</div>
+				<h1 class="hero-heading">Your voice <span class="highlight">matters.</span></h1>
+				<p class="hero-sub">Create a safe account to track your reports, access AI tools, and connect with support — always anonymously and securely.</p>
+
+				<div class="trust-badges mt-4">
+					<div class="badge-item">
+						<i class="bi bi-shield-lock-fill"></i>
+						<span>No personal data shared</span>
+					</div>
+					<div class="badge-item">
+						<i class="bi bi-eye-slash-fill"></i>
+						<span>Anonymous by design</span>
+					</div>
+					<div class="badge-item">
+						<i class="bi bi-heart-fill"></i>
+						<span>Built for survivors</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Register Card -->
+			<div class="col-lg-5 col-md-8 col-12">
+				<div class="login-card">
+
+					<!-- Mobile Brand -->
+					<div class="d-lg-none text-center mb-4">
+						<span class="brand-icon">&#9893;</span>
+						<span class="brand-name ms-2">SafeHer</span>
+					</div>
+
+					<h2 class="card-title">Create account</h2>
+					<p class="card-subtitle">Join our safe and secure community</p>
+
+					<!-- Messages -->
+					<div *ngIf="errorMessage" class="alert-error">
+						<i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
+					</div>
+					<div *ngIf="successMessage" class="alert-success">
+						<i class="bi bi-check-circle-fill me-2"></i>{{ successMessage }}
+					</div>
+
+					<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+
+						<div class="form-group">
+							<label for="fullName">Full Name</label>
+							<div class="input-wrap">
+								<i class="bi bi-person input-icon"></i>
+								<input id="fullName"
+											 type="text"
+											 formControlName="fullName"
+											 placeholder="Your name"
+											 class="form-input"
+											 [class.input-error]="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<div class="input-wrap">
+								<i class="bi bi-envelope input-icon"></i>
+								<input id="email"
+											 type="email"
+											 formControlName="email"
+											 placeholder="you@example.com"
+											 class="form-input"
+											 [class.input-error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password">Password</label>
+							<div class="input-wrap">
+								<i class="bi bi-lock input-icon"></i>
+								<input id="password"
+											 type="password"
+											 formControlName="password"
+											 placeholder="Minimum 6 characters"
+											 class="form-input"
+											 [class.input-error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+							</div>
+							<span class="error-text" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+								Password must be at least 6 characters.
+							</span>
+						</div>
+
+						<div class="form-group">
+							<label for="confirmPassword">Confirm Password</label>
+							<div class="input-wrap">
+								<i class="bi bi-lock-fill input-icon"></i>
+								<input id="confirmPassword"
+											 type="password"
+											 formControlName="confirmPassword"
+											 placeholder="Repeat your password"
+											 class="form-input"
+											 [class.input-error]="passwordMismatch">
+							</div>
+							<span class="error-text" *ngIf="passwordMismatch">
+								Passwords do not match.
+							</span>
+						</div>
+
+						<button type="submit" class="btn-login" [disabled]="!registerForm.valid || isLoading || !!passwordMismatch">
+							<span *ngIf="!isLoading">Create My Safe Account</span>
+							<span *ngIf="isLoading">
+								<span class="spinner"></span> Creating account...
+							</span>
+						</button>
+
+					</form>
+
+					<div class="divider"><span>or</span></div>
+
+					<div class="text-center">
+						<p class="register-link">
+							Already have an account?
+							<a routerLink="/login">Log in here</a>
+						</p>
+						<p class="anonymous-link">
+							<a routerLink="/report">
+								<i class="bi bi-incognito me-1"></i>
+								Continue anonymously without an account
+							</a>
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

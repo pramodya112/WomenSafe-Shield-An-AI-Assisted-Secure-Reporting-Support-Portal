@@ -1,0 +1,485 @@
+<!-- SITE HEADER — exact copy from home -->
+<header class="site-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-12 d-flex flex-wrap">
+        <p class="d-flex me-4 mb-0">
+          <i class="bi-geo-alt me-2"></i>
+          Akershusstranda 20, 0150 Oslo, Norway
+        </p>
+        <p class="d-flex mb-0">
+          <i class="bi-envelope me-2"></i>
+          <a href="mailto:info@company.com">info&#64;company.com</a>
+        </p>
+      </div>
+      <div class="col-lg-3 col-12 ms-auto d-lg-block d-none">
+        <ul class="social-icon">
+          <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
+          <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
+          <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
+          <li class="social-icon-item"><a href="#" class="social-icon-link bi-youtube"></a></li>
+          <li class="social-icon-item"><a href="#" class="social-icon-link bi-whatsapp"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAVBAR — exact copy from home -->
+<nav class="unav" id="uNav">
+
+  <a class="unav-brand" routerLink="/">
+    <div class="unav-brand-icon">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <path d="M13 2L15.8 9.2H23.5L17.4 13.8L19.7 21L13 16.4L6.3 21L8.6 13.8L2.5 9.2H10.2L13 2Z" fill="#c8396b" />
+        <circle cx="13" cy="13" r="4" fill="#1a0a14" opacity="0.5" />
+      </svg>
+    </div>
+    <div class="unav-brand-text">
+      <span class="unav-brand-name">SafeReport</span>
+      <span class="unav-brand-tagline">Protection &amp; Support</span>
+    </div>
+  </a>
+
+  <div class="unav-links" id="uNavLinks">
+    <a class="unav-link" routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <a class="unav-link" routerLink="/home" href="#section_2">About</a>
+
+    <div class="unav-dropdown-wrap">
+      <button class="unav-link unav-dropdown-trigger" aria-expanded="false">
+        Services <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3.5L5 6.5L8 3.5" /></svg>
+      </button>
+      <div class="unav-dropdown">
+        <div class="unav-dropdown-inner">
+          <a class="unav-drop-item" routerLink="/report">
+            <span class="unav-drop-icon"><i class="bi-flag-fill"></i></span>
+            <span>
+              <strong>Submit a Report</strong>
+              <em>File a new case securely</em>
+            </span>
+          </a>
+          <a class="unav-drop-item is-active" routerLink="/track">
+            <span class="unav-drop-icon"><i class="bi-search"></i></span>
+            <span>
+              <strong>Track My Report</strong>
+              <em>Check your case status</em>
+            </span>
+          </a>
+          <a class="unav-drop-item" routerLink="/chatbot">
+            <span class="unav-drop-icon"><i class="bi-robot"></i></span>
+            <span>
+              <strong>AI Support Chatbot</strong>
+              <em>24/7 guided assistance</em>
+            </span>
+          </a>
+          <a class="unav-drop-item" routerLink="/profile-checker">
+            <span class="unav-drop-icon"><i class="bi-person-x-fill"></i></span>
+            <span>
+              <strong>Fake Profile Checker</strong>
+              <em>Verify suspicious accounts</em>
+            </span>
+          </a>
+          <a class="unav-drop-item unav-drop-donate" routerLink="/donate">
+            <span class="unav-drop-icon"><i class="bi-heart-fill"></i></span>
+            <span>
+              <strong>Donate</strong>
+              <em>Support our mission</em>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a class="unav-link" href="/home#section_3">Causes</a>
+    <a class="unav-link" href="/home#section_5">News</a>
+    <a class="unav-link" href="/home#section_6">Contact</a>
+  </div>
+
+  <div class="unav-right">
+    <a routerLink="/report" class="unav-cta">
+      <i class="bi-shield-exclamation"></i>
+      <span>Report Now</span>
+    </a>
+    <button class="unav-burger" id="uNavBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="unav-drawer" id="uNavDrawer">
+  <div class="unav-drawer-inner">
+    <a class="unav-drawer-link" routerLink="/">Home</a>
+    <a class="unav-drawer-link" href="/home#section_2">About</a>
+    <a class="unav-drawer-link" routerLink="/report">Submit a Report</a>
+    <a class="unav-drawer-link" routerLink="/track">Track My Report</a>
+    <a class="unav-drawer-link" routerLink="/chatbot">AI Support Chatbot</a>
+    <a class="unav-drawer-link" routerLink="/profile-checker">Fake Profile Checker</a>
+    <a class="unav-drawer-link" href="/home#section_3">Causes</a>
+    <a class="unav-drawer-link" href="/home#section_5">News</a>
+    <a class="unav-drawer-link" href="/home#section_6">Contact</a>
+    <a class="unav-cta mt-3 d-inline-flex" routerLink="/report">
+      <i class="bi-shield-exclamation"></i> Report Now
+    </a>
+  </div>
+</div>
+<div class="unav-backdrop" id="uNavBackdrop"></div>
+
+<main class="tr-main">
+
+  <!-- Hero -->
+  <section class="tr-hero">
+    <div class="tr-hero-bg"></div>
+    <div class="container">
+      <div class="tr-hero-content">
+        <span class="tr-hero-badge"><i class="bi-search"></i> Secure Tracking</span>
+        <h1 class="tr-hero-title">Track Your Report</h1>
+        <p class="tr-hero-sub">Enter the tracking code you received when you submitted your report to check its current status.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Section -->
+  <section class="tr-section">
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <!-- Search Column -->
+        <div class="col-lg-7 col-12">
+
+          <!-- Search Card -->
+          <div class="tr-search-card">
+            <div class="tr-search-card-header">
+              <div class="tr-search-icon-wrap">
+                <i class="bi-shield-lock-fill"></i>
+              </div>
+              <div>
+                <h2 class="tr-search-card-title">Enter Tracking Code</h2>
+                <p class="tr-search-card-sub">Your code starts with <strong>WE-</strong> followed by 8 characters</p>
+              </div>
+            </div>
+
+            <div class="tr-search-form">
+              <div class="tr-input-wrap" [class.has-error]="searchError">
+                <i class="bi-hash tr-input-icon"></i>
+                <input type="text"
+                       class="tr-input"
+                       [(ngModel)]="trackingCode"
+                       (ngModelChange)="onCodeChange()"
+                       (keyup.enter)="trackReport()"
+                       placeholder="e.g. WE-A1B2C3D4"
+                       maxlength="11"
+                       autocomplete="off"
+                       [disabled]="isLoading" />
+                <button class="tr-input-clear"
+                        *ngIf="trackingCode && !isLoading"
+                        (click)="clearSearch()"
+                        title="Clear">
+                  <i class="bi-x-lg"></i>
+                </button>
+              </div>
+              <p class="tr-error-msg" *ngIf="searchError">{{ searchError }}</p>
+
+              <button class="tr-search-btn"
+                      (click)="trackReport()"
+                      [disabled]="isLoading || !trackingCode.trim()">
+                <span *ngIf="!isLoading">
+                  <i class="bi-search"></i> Track Report
+                </span>
+                <span *ngIf="isLoading" class="tr-spinner-wrap">
+                  <span class="tr-spinner"></span> Searching...
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Result Card -->
+          <div class="tr-result-card" *ngIf="report && !isLoading" [@fadeIn]>
+
+            <!-- Status Banner -->
+            <div class="tr-status-banner" [ngClass]="getStatusClass(report)">
+              <div class="tr-status-banner-left">
+                <i class="tr-status-icon" [ngClass]="getStatusIcon(report)"></i>
+                <div>
+                  <span class="tr-status-label">Current Status</span>
+                  <span class="tr-status-value">{{ getStatusDisplay(report) }}</span>
+                </div>
+              </div>
+              <div class="tr-status-pulse" [ngClass]="getStatusClass(report)"></div>
+            </div>
+
+            <!-- Report Details -->
+            <div class="tr-details-grid">
+
+              <div class="tr-detail-item">
+                <span class="tr-detail-label"><i class="bi-card-heading"></i> Report Title</span>
+                <span class="tr-detail-value">{{ report.title }}</span>
+              </div>
+
+              <div class="tr-detail-item">
+                <span class="tr-detail-label"><i class="bi-tag-fill"></i> Incident Type</span>
+                <span class="tr-detail-value">
+                  <span class="tr-incident-badge">{{ report.incidentType }}</span>
+                </span>
+              </div>
+
+              <div class="tr-detail-item">
+                <span class="tr-detail-label"><i class="bi-calendar-event-fill"></i> Date Submitted</span>
+                <span class="tr-detail-value">{{ report.createdAt | date:'MMMM d, yyyy — h:mm a' }}</span>
+              </div>
+
+              <div class="tr-detail-item">
+                <span class="tr-detail-label"><i class="bi-clock-history"></i> Last Updated</span>
+                <span class="tr-detail-value">{{ report.updatedAt ? (report.updatedAt | date:'MMMM d, yyyy — h:mm a') : 'No updates yet' }}</span>
+              </div>
+
+              <div class="tr-detail-item tr-detail-item--full" *ngIf="report.adminNotes">
+                <span class="tr-detail-label"><i class="bi-chat-square-text-fill"></i> Admin Notes / Response</span>
+                <div class="tr-admin-notes">
+                  <i class="bi-quote tr-quote-icon"></i>
+                  <p>{{ report.adminNotes }}</p>
+                </div>
+              </div>
+
+              <div class="tr-detail-item tr-detail-item--full" *ngIf="!report.adminNotes">
+                <span class="tr-detail-label"><i class="bi-chat-square-text-fill"></i> Admin Notes / Response</span>
+                <div class="tr-no-notes">
+                  <i class="bi-hourglass-split"></i>
+                  <span>No response yet — our team is reviewing your report.</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Timeline -->
+            <div class="tr-timeline">
+              <h4 class="tr-timeline-title">Case Progress</h4>
+              <div class="tr-timeline-track">
+                <div class="tr-timeline-step" [class.is-done]="isStepDone('Pending', report)" [class.is-current]="isCurrentStep('Pending', report)">
+                  <div class="tr-timeline-dot">
+                    <i class="bi-check2" *ngIf="isStepDone('Pending', report) && !isCurrentStep('Pending', report)"></i>
+                    <i class="bi-circle-fill" *ngIf="isCurrentStep('Pending', report)"></i>
+                  </div>
+                  <span>Submitted</span>
+                </div>
+                <div class="tr-timeline-line" [class.is-done]="isStepDone('UnderReview', report)"></div>
+                <div class="tr-timeline-step" [class.is-done]="isStepDone('UnderReview', report)" [class.is-current]="isCurrentStep('UnderReview', report)">
+                  <div class="tr-timeline-dot">
+                    <i class="bi-check2" *ngIf="isStepDone('UnderReview', report) && !isCurrentStep('UnderReview', report)"></i>
+                    <i class="bi-circle-fill" *ngIf="isCurrentStep('UnderReview', report)"></i>
+                  </div>
+                  <span>Under Review</span>
+                </div>
+                <div class="tr-timeline-line" [class.is-done]="isStepDone('AssignmentToGo', report)"></div>
+                <div class="tr-timeline-step" [class.is-done]="isStepDone('AssignmentToGo', report)" [class.is-current]="isCurrentStep('AssignmentToGo', report)">
+                  <div class="tr-timeline-dot">
+                    <i class="bi-check2" *ngIf="isStepDone('AssignmentToGo', report) && !isCurrentStep('AssignmentToGo', report)"></i>
+                    <i class="bi-circle-fill" *ngIf="isCurrentStep('AssignmentToGo', report)"></i>
+                  </div>
+                  <span>In Action</span>
+                </div>
+                <div class="tr-timeline-line" [class.is-done]="isStepDone('Closed', report)"></div>
+                <div class="tr-timeline-step" [class.is-done]="isStepDone('Closed', report)" [class.is-current]="isCurrentStep('Closed', report)">
+                  <div class="tr-timeline-dot">
+                    <i class="bi-check2" *ngIf="isCurrentStep('Closed', report)"></i>
+                  </div>
+                  <span>Resolved</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="tr-result-actions">
+              <button class="tr-btn-secondary" (click)="clearSearch()">
+                <i class="bi-arrow-left"></i> Track Another
+              </button>
+              <a routerLink="/report" class="tr-btn-primary">
+                <i class="bi-plus-lg"></i> Submit New Report
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Not Found Card -->
+          <div class="tr-notfound-card" *ngIf="notFound && !isLoading" [@fadeIn]>
+            <div class="tr-notfound-icon"><i class="bi-search"></i></div>
+            <h3>No Report Found</h3>
+            <p>We couldn't find a report with the code <strong>{{ lastSearchedCode }}</strong>. Please check the code and try again.</p>
+            <ul class="tr-notfound-tips">
+              <li><i class="bi-check-circle-fill"></i> Make sure you typed the code exactly as received</li>
+              <li><i class="bi-check-circle-fill"></i> The code format is <strong>WE-</strong> followed by 8 characters</li>
+              <li><i class="bi-check-circle-fill"></i> Codes are case-insensitive</li>
+            </ul>
+            <button class="tr-btn-primary" (click)="clearSearch()">
+              <i class="bi-arrow-counterclockwise"></i> Try Again
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4 col-12">
+
+          <!-- Privacy note -->
+          <div class="tr-sidebar-card tr-sidebar-privacy">
+            <div class="tr-sidebar-card-header">
+              <i class="bi-shield-check-fill"></i>
+              <h5>Your Privacy is Protected</h5>
+            </div>
+            <p>Tracking your report does not reveal your identity. All lookups are anonymous and encrypted.</p>
+          </div>
+
+          <!-- How it works -->
+          <div class="tr-sidebar-card">
+            <div class="tr-sidebar-card-header">
+              <i class="bi-info-circle-fill"></i>
+              <h5>How Tracking Works</h5>
+            </div>
+            <div class="tr-how-list">
+              <div class="tr-how-item">
+                <span class="tr-how-num">1</span>
+                <p>Enter the unique code from your submission confirmation</p>
+              </div>
+              <div class="tr-how-item">
+                <span class="tr-how-num">2</span>
+                <p>We securely look up your report using only that code</p>
+              </div>
+              <div class="tr-how-item">
+                <span class="tr-how-num">3</span>
+                <p>View the current status and any notes from our team</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status guide -->
+          <div class="tr-sidebar-card">
+            <div class="tr-sidebar-card-header">
+              <i class="bi-diagram-3-fill"></i>
+              <h5>Status Guide</h5>
+            </div>
+            <div class="tr-status-guide">
+              <div class="tr-status-guide-item tr-sg-pending">
+                <span class="tr-sg-dot"></span>
+                <div>
+                  <strong>Pending</strong>
+                  <p>Your report has been received and is awaiting review</p>
+                </div>
+              </div>
+              <div class="tr-status-guide-item tr-sg-review">
+                <span class="tr-sg-dot"></span>
+                <div>
+                  <strong>Under Review</strong>
+                  <p>Our team is actively reviewing your case details</p>
+                </div>
+              </div>
+              <div class="tr-status-guide-item tr-sg-action">
+                <span class="tr-sg-dot"></span>
+                <div>
+                  <strong>In Action</strong>
+                  <p>Steps are being taken to address your report</p>
+                </div>
+              </div>
+              <div class="tr-status-guide-item tr-sg-closed">
+                <span class="tr-sg-dot"></span>
+                <div>
+                  <strong>Resolved</strong>
+                  <p>Your case has been closed with a final outcome</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emergency contacts -->
+          <div class="tr-sidebar-card tr-sidebar-emergency">
+            <p class="tr-sidebar-card-title"><i class="bi-telephone-fill"></i> Emergency Contacts</p>
+            <div class="tr-emergency-list">
+              <div class="tr-emergency-item">
+                <span class="tr-emergency-label">Police</span>
+                <a href="tel:119" class="tr-emergency-num">119</a>
+              </div>
+              <div class="tr-emergency-item">
+                <span class="tr-emergency-label">Women's Helpline</span>
+                <a href="tel:1938" class="tr-emergency-num">1938</a>
+              </div>
+              <div class="tr-emergency-item">
+                <span class="tr-emergency-label">Cybercrime Unit</span>
+                <a href="tel:0112691691" class="tr-emergency-num">011-269-1691</a>
+              </div>
+              <div class="tr-emergency-item">
+                <span class="tr-emergency-label">Email Support</span>
+                <a href="mailto:help@womenempower.lk" class="tr-emergency-num" style="font-size:0.78rem;letter-spacing:0;">help&#64;womenempower.lk</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://www.google.com" class="tr-quick-exit">
+            <i class="bi-box-arrow-right"></i> Quick Exit — Leave this page
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER — exact copy from home -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-12 mb-4">
+        <img src="assets/images/logo.png" class="logo img-fluid" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mb-4">
+        <h5 class="site-footer-title mb-3">Quick Links</h5>
+        <ul class="footer-menu">
+          <li class="footer-menu-item"><a href="#" class="footer-menu-link">Our Story</a></li>
+          <li class="footer-menu-item"><a routerLink="/news" class="footer-menu-link">Newsroom</a></li>
+          <li class="footer-menu-item"><a href="/home#section_3" class="footer-menu-link">Causes</a></li>
+          <li class="footer-menu-item"><a href="/home#section_4" class="footer-menu-link">Become a volunteer</a></li>
+          <li class="footer-menu-item"><a href="#" class="footer-menu-link">Partner with us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mx-auto">
+        <h5 class="site-footer-title mb-3">Contact Information</h5>
+        <p class="text-white d-flex mb-2">
+          <i class="bi-telephone me-2"></i>
+          <a href="tel:305-240-9671" class="site-footer-link">305-240-9671</a>
+        </p>
+        <p class="text-white d-flex">
+          <i class="bi-envelope me-2"></i>
+          <a href="mailto:info@company.com" class="site-footer-link">info&#64;company.com</a>
+        </p>
+        <p class="text-white d-flex mt-3">
+          <i class="bi-geo-alt me-2"></i>
+          Akershusstranda 20, 0150 Oslo, Norway
+        </p>
+        <a href="#" class="custom-btn btn mt-3">Get Direction</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-7 col-12">
+          <p class="copyright-text mb-0">
+            Copyright © 2036 <a href="#">Kind Heart</a> Charity Org.
+            Design: <a href="https://templatemo.com" target="_blank">TemplateMo</a><br>Distribution:
+            <a href="https://themewagon.com">ThemeWagon</a>
+          </p>
+        </div>
+        <div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
+          <ul class="social-icon">
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-linkedin"></a></li>
+            <li class="social-icon-item"><a href="https://youtube.com/templatemo" class="social-icon-link bi-youtube"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

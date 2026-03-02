@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WomenEmpower.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
+
 namespace WomenEmpower.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -12,6 +13,7 @@ namespace WomenEmpower.Infrastructure.Data
         {
         }
 
+        public DbSet<IncidentModel> Incidents { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<Evidence> Evidences { get; set; }
         public DbSet<AIAnalysis> AIAnalyses { get; set; }

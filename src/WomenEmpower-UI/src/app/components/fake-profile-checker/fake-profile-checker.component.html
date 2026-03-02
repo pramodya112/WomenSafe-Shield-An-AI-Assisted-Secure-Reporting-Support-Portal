@@ -1,0 +1,273 @@
+<nav class="unav" id="uNav">
+  <a class="unav-brand" routerLink="/">
+    <div class="unav-brand-icon">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <path d="M13 2L15.8 9.2H23.5L17.4 13.8L19.7 21L13 16.4L6.3 21L8.6 13.8L2.5 9.2H10.2L13 2Z" fill="#c8396b" />
+        <circle cx="13" cy="13" r="4" fill="#1a0a14" opacity="0.5" />
+      </svg>
+    </div>
+    <div class="unav-brand-text">
+      <span class="unav-brand-name">SafeReport</span>
+      <span class="unav-brand-tagline">Protection &amp; Support</span>
+    </div>
+  </a>
+  <div class="unav-links" id="uNavLinks">
+    <a class="unav-link" routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <a class="unav-link" href="/home#section_2">About</a>
+    <div class="unav-dropdown-wrap">
+      <button class="unav-link unav-dropdown-trigger" aria-expanded="false">
+        Services <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3.5L5 6.5L8 3.5" /></svg>
+      </button>
+      <div class="unav-dropdown">
+        <div class="unav-dropdown-inner">
+          <a class="unav-drop-item" routerLink="/report"><span class="unav-drop-icon"><i class="bi-flag-fill"></i></span><span><strong>Submit a Report</strong><em>File a new case securely</em></span></a>
+          <a class="unav-drop-item" routerLink="/track"><span class="unav-drop-icon"><i class="bi-search"></i></span><span><strong>Track My Report</strong><em>Check your case status</em></span></a>
+          <a class="unav-drop-item" routerLink="/chatbot"><span class="unav-drop-icon"><i class="bi-robot"></i></span><span><strong>AI Support Chatbot</strong><em>24/7 guided assistance</em></span></a>
+          <a class="unav-drop-item is-active" routerLink="/profile-checker"><span class="unav-drop-icon"><i class="bi-person-x-fill"></i></span><span><strong>Fake Profile Checker</strong><em>Verify suspicious accounts</em></span></a>
+          <a class="unav-drop-item unav-drop-donate" routerLink="/donate"><span class="unav-drop-icon"><i class="bi-heart-fill"></i></span><span><strong>Donate</strong><em>Support our mission</em></span></a>
+        </div>
+      </div>
+    </div>
+    <a class="unav-link" href="/home#section_3">Causes</a>
+    <a class="unav-link" href="/home#section_5">News</a>
+    <a class="unav-link" href="/home#section_6">Contact</a>
+  </div>
+  <div class="unav-right">
+    <a routerLink="/report" class="unav-cta"><i class="bi-shield-exclamation"></i><span>Report Now</span></a>
+    <button class="unav-burger" id="uNavBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="unav-drawer" id="uNavDrawer">
+  <div class="unav-drawer-inner">
+    <a class="unav-drawer-link" routerLink="/">Home</a>
+    <a class="unav-drawer-link" routerLink="/report">Submit a Report</a>
+    <a class="unav-drawer-link" routerLink="/track">Track My Report</a>
+    <a class="unav-drawer-link" routerLink="/chatbot">AI Support Chatbot</a>
+    <a class="unav-drawer-link" routerLink="/profile-checker">Fake Profile Checker</a>
+    <a class="unav-cta mt-3 d-inline-flex" routerLink="/report"><i class="bi-shield-exclamation"></i> Report Now</a>
+  </div>
+</div>
+<div class="unav-backdrop" id="uNavBackdrop"></div>
+
+<main class="fp-main">
+
+  <!-- Hero -->
+  <section class="fp-hero">
+    <div class="fp-hero-bg"></div>
+    <div class="fp-hero-grid"></div>
+    <div class="container">
+      <div class="fp-hero-content">
+        <span class="fp-hero-badge"><i class="bi-cpu-fill"></i> AI-Powered Detection</span>
+        <h1 class="fp-hero-title">Fake Profile <span class="fp-title-accent">Checker</span></h1>
+        <p class="fp-hero-sub">Paste a suspicious profile URL — our AI will instantly analyze it for red flags and tell you if it's fake.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fp-section">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+
+        <!-- Main Column -->
+        <div class="col-lg-7 col-12">
+
+          <!-- URL Input Card -->
+          <div class="fp-url-card" *ngIf="!result">
+            <div class="fp-url-icon"><i class="bi-person-x-fill"></i></div>
+            <h2 class="fp-url-title">Paste Profile URL</h2>
+            <p class="fp-url-sub">Works with Instagram, Facebook, Twitter/X, TikTok, LinkedIn and more</p>
+
+            <div class="fp-url-input-wrap" [class.has-error]="errorMsg">
+              <i class="bi-link-45deg fp-url-icon-input"></i>
+              <input type="url"
+                     class="fp-url-input"
+                     [(ngModel)]="profileUrl"
+                     (keyup.enter)="analyzeProfile()"
+                     placeholder="https://instagram.com/username"
+                     [disabled]="isAnalyzing"
+                     autocomplete="off" />
+              <button class="fp-url-clear" *ngIf="profileUrl && !isAnalyzing" (click)="profileUrl=''">
+                <i class="bi-x-lg"></i>
+              </button>
+            </div>
+
+            <p class="fp-url-error" *ngIf="errorMsg">
+              <i class="bi-exclamation-triangle-fill"></i> {{ errorMsg }}
+            </p>
+
+            <button class="fp-analyze-btn" (click)="analyzeProfile()" [disabled]="isAnalyzing || !canSubmit()">
+              <span *ngIf="!isAnalyzing"><i class="bi-cpu-fill"></i> Analyze Profile</span>
+              <span *ngIf="isAnalyzing" class="fp-analyzing">
+                <span class="fp-dot"></span><span class="fp-dot"></span><span class="fp-dot"></span>
+                AI is analyzing...
+              </span>
+            </button>
+
+            <div class="fp-examples">
+              <span class="fp-examples-label">Try an example:</span>
+              <button class="fp-example-pill" (click)="profileUrl='https://instagram.com/john.smith_real2024'">Instagram</button>
+              <button class="fp-example-pill" (click)="profileUrl='https://facebook.com/profile.php?id=100087234561'">Facebook</button>
+              <button class="fp-example-pill" (click)="profileUrl='https://twitter.com/user_8823_xyz'">Twitter/X</button>
+            </div>
+          </div>
+
+          <!-- Result Card -->
+          <div class="fp-result-card" *ngIf="result" [@slideIn]>
+
+            <!-- Risk Banner -->
+            <div class="fp-risk-banner" [ngClass]="'risk-' + result.riskLevel.toLowerCase()">
+              <div class="fp-risk-left">
+                <div class="fp-risk-icon-wrap">
+                  <i [class]="getRiskIcon()"></i>
+                </div>
+                <div>
+                  <span class="fp-risk-label">Risk Level</span>
+                  <span class="fp-risk-value">{{ result.riskLevel }} Risk</span>
+                  <span class="fp-risk-meta">{{ result.platform }} &middot; &#64;{{ result.username }}</span>
+                </div>
+              </div>
+              <div class="fp-score-wrap">
+                <svg class="fp-score-svg" viewBox="0 0 48 48">
+                  <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="4" />
+                  <circle cx="24" cy="24" r="20" fill="none"
+                          [attr.stroke]="getRiskColor()"
+                          stroke-width="4"
+                          stroke-linecap="round"
+                          style.strokeDasharray="125.6"
+                          [style.strokeDashoffset]="getScoreOffset()"
+                          transform="rotate(-90 24 24)" />
+                </svg>
+                <div class="fp-score-text">
+                  <span class="fp-score-num">{{ result.riskScore }}</span>
+                  <span class="fp-score-sub">/100</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Body -->
+            <div class="fp-result-body">
+
+              <!-- Explanation -->
+              <div class="fp-result-section">
+                <h4 class="fp-result-heading"><i class="bi-card-text"></i> Analysis Summary</h4>
+                <p class="fp-result-text">{{ result.explanation }}</p>
+              </div>
+
+              <!-- Red Flags -->
+              <div class="fp-result-section" *ngIf="result.redFlags?.length">
+                <h4 class="fp-result-heading"><i class="bi-exclamation-triangle-fill"></i> Red Flags</h4>
+                <div class="fp-flags">
+                  <div class="fp-flag" *ngFor="let flag of result.redFlags">
+                    <i class="bi-x-circle-fill"></i> {{ flag }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recommended Action -->
+              <div class="fp-result-section">
+                <h4 class="fp-result-heading"><i class="bi-shield-fill-check"></i> Recommended Action</h4>
+                <div class="fp-action" [ngClass]="'action-' + result.riskLevel.toLowerCase()">
+                  <i [class]="getActionIcon()"></i>
+                  <div>
+                    <strong>{{ result.recommendedAction }}</strong>
+                    <p>{{ result.actionDetail }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reverse Image Links -->
+              <div class="fp-result-section">
+                <h4 class="fp-result-heading"><i class="bi-image-fill"></i> Also Verify the Profile Photo</h4>
+                <div class="fp-img-links">
+                  <a href="https://images.google.com" target="_blank" class="fp-img-link"><i class="bi-google"></i> Google Images</a>
+                  <a href="https://tineye.com" target="_blank" class="fp-img-link"><i class="bi-search"></i> TinEye</a>
+                  <a href="https://pimeyes.com" target="_blank" class="fp-img-link"><i class="bi-person-bounding-box"></i> PimEyes</a>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="fp-result-footer">
+              <button class="fp-btn-secondary" (click)="reset()"><i class="bi-arrow-counterclockwise"></i> Check Another</button>
+              <a routerLink="/report" class="fp-btn-primary"><i class="bi-flag-fill"></i> Report This Profile</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4 col-12">
+          <div class="fp-sidebar-card fp-sidebar-tip">
+            <div class="fp-sidebar-hd"><i class="bi-lightbulb-fill"></i><h5>How It Works</h5></div>
+            <div class="fp-tip-list">
+              <div class="fp-tip"><span class="fp-tip-n">1</span><p>Paste the full profile URL from any social platform</p></div>
+              <div class="fp-tip"><span class="fp-tip-n">2</span><p>Our AI analyzes URL patterns, username structure, and platform signals</p></div>
+              <div class="fp-tip"><span class="fp-tip-n">3</span><p>Get a risk score, red flags, and recommended action instantly</p></div>
+            </div>
+          </div>
+
+          <div class="fp-sidebar-card">
+            <div class="fp-sidebar-hd"><i class="bi-shield-fill-exclamation"></i><h5>If It's Fake</h5></div>
+            <div class="fp-action-steps">
+              <div class="fp-astep"><i class="bi-x-circle-fill"></i><p>Don't share personal information</p></div>
+              <div class="fp-astep"><i class="bi-slash-circle-fill"></i><p>Block the account immediately</p></div>
+              <div class="fp-astep"><i class="bi-flag-fill"></i><p>Report to the platform</p></div>
+              <div class="fp-astep"><i class="bi-file-earmark-text-fill"></i><p>File a report here for documentation</p></div>
+            </div>
+          </div>
+
+          <div class="fp-sidebar-card fp-sidebar-emergency">
+            <p class="fp-emerg-title"><i class="bi-telephone-fill"></i> Emergency Contacts</p>
+            <div class="fp-emerg-list">
+              <div class="fp-emerg-item"><span>Police</span><a href="tel:119">119</a></div>
+              <div class="fp-emerg-item"><span>Women's Helpline</span><a href="tel:1938">1938</a></div>
+              <div class="fp-emerg-item"><span>Cybercrime Unit</span><a href="tel:0112691691">011-269-1691</a></div>
+            </div>
+          </div>
+
+          <a href="https://www.google.com" class="fp-quick-exit"><i class="bi-box-arrow-right"></i> Quick Exit</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-12 mb-4"><img src="assets/images/logo.png" class="logo img-fluid" alt=""></div>
+      <div class="col-lg-4 col-md-6 col-12 mb-4">
+        <h5 class="site-footer-title mb-3">Quick Links</h5>
+        <ul class="footer-menu">
+          <li class="footer-menu-item"><a href="#" class="footer-menu-link">Our Story</a></li>
+          <li class="footer-menu-item"><a routerLink="/track" class="footer-menu-link">Track My Report</a></li>
+          <li class="footer-menu-item"><a routerLink="/news" class="footer-menu-link">Newsroom</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6 col-12 mx-auto">
+        <h5 class="site-footer-title mb-3">Contact Information</h5>
+        <p class="text-white d-flex mb-2"><i class="bi-telephone me-2"></i><a href="tel:305-240-9671" class="site-footer-link">305-240-9671</a></p>
+        <p class="text-white d-flex"><i class="bi-envelope me-2"></i><a href="mailto:info@company.com" class="site-footer-link">info&#64;company.com</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-7 col-12">
+          <p class="copyright-text mb-0">Copyright &copy; 2036 <a href="#">Kind Heart</a> Charity Org.</p>
+        </div>
+        <div class="col-lg-6 col-md-5 col-12 d-flex justify-content-center align-items-center mx-auto">
+          <ul class="social-icon">
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-twitter"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
+            <li class="social-icon-item"><a href="#" class="social-icon-link bi-linkedin"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

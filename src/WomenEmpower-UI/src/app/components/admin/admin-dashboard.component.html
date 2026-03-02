@@ -1,0 +1,389 @@
+<div class="ad-shell" [class.sidebar-collapsed]="sidebarCollapsed">
+
+  <!-- ═══════════════════════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════════════════ -->
+  <aside class="ad-sidebar">
+
+    <div class="ad-sidebar-brand">
+      <div class="ad-brand-icon">
+        <svg width="22" height="22" viewBox="0 0 26 26" fill="none">
+          <path d="M13 2L15.8 9.2H23.5L17.4 13.8L19.7 21L13 16.4L6.3 21L8.6 13.8L2.5 9.2H10.2L13 2Z" fill="#c8396b" />
+          <circle cx="13" cy="13" r="4" fill="#0d0d14" opacity="0.5" />
+        </svg>
+      </div>
+      <div class="ad-brand-text" *ngIf="!sidebarCollapsed">
+        <span class="ad-brand-name">SafeReport</span>
+        <span class="ad-brand-role">Admin Panel</span>
+      </div>
+    </div>
+
+    <nav class="ad-sidebar-nav">
+      <a class="ad-nav-item is-active">
+        <i class="bi-grid-1x2-fill ad-nav-icon"></i>
+        <span *ngIf="!sidebarCollapsed">Dashboard</span>
+      </a>
+      <a class="ad-nav-item" routerLink="/">
+        <i class="bi-house-fill ad-nav-icon"></i>
+        <span *ngIf="!sidebarCollapsed">View Site</span>
+      </a>
+    </nav>
+
+    <div class="ad-sidebar-footer">
+      <div class="ad-admin-chip" *ngIf="!sidebarCollapsed">
+        <div class="ad-admin-avatar">A</div>
+        <div class="ad-admin-info">
+          <span class="ad-admin-name">Administrator</span>
+          <span class="ad-admin-role-tag">Super Admin</span>
+        </div>
+      </div>
+      <button class="ad-logout-btn" (click)="logout()" title="Logout">
+        <i class="bi-box-arrow-right"></i>
+        <span *ngIf="!sidebarCollapsed">Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ═══════════════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════════════ -->
+  <div class="ad-main">
+
+    <!-- Top Bar -->
+    <header class="ad-topbar">
+      <div class="ad-topbar-left">
+        <button class="ad-collapse-btn" (click)="toggleSidebar()" title="Toggle sidebar">
+          <i class="bi-layout-sidebar"></i>
+        </button>
+        <div class="ad-topbar-title">
+          <h1>Reports Dashboard</h1>
+          <span>{{ today | date:'EEEE, MMMM d, yyyy' }}</span>
+        </div>
+      </div>
+      <div class="ad-topbar-right">
+        <button class="ad-refresh-btn" (click)="loadReports()" [class.spinning]="isLoading" title="Refresh">
+          <i class="bi-arrow-clockwise"></i>
+        </button>
+        <div class="ad-topbar-badge">
+          <i class="bi-shield-check-fill"></i>
+          <span>Secure Session</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Stats Row ─────────────────────────────────── -->
+    <div class="ad-content">
+
+      <div class="ad-stats-row">
+        <div class="ad-stat-card ad-stat-total">
+          <div class="ad-stat-icon"><i class="bi-folder2-open"></i></div>
+          <div class="ad-stat-body">
+            <span class="ad-stat-num">{{ stats.total }}</span>
+            <span class="ad-stat-label">Total Reports</span>
+          </div>
+          <div class="ad-stat-glow"></div>
+        </div>
+        <div class="ad-stat-card ad-stat-pending">
+          <div class="ad-stat-icon"><i class="bi-hourglass-split"></i></div>
+          <div class="ad-stat-body">
+            <span class="ad-stat-num">{{ stats.pending }}</span>
+            <span class="ad-stat-label">Pending</span>
+          </div>
+          <div class="ad-stat-glow"></div>
+        </div>
+        <div class="ad-stat-card ad-stat-review">
+          <div class="ad-stat-icon"><i class="bi-eye-fill"></i></div>
+          <div class="ad-stat-body">
+            <span class="ad-stat-num">{{ stats.underReview }}</span>
+            <span class="ad-stat-label">Under Review</span>
+          </div>
+          <div class="ad-stat-glow"></div>
+        </div>
+        <div class="ad-stat-card ad-stat-action">
+          <div class="ad-stat-icon"><i class="bi-lightning-fill"></i></div>
+          <div class="ad-stat-body">
+            <span class="ad-stat-num">{{ stats.inAction }}</span>
+            <span class="ad-stat-label">In Action</span>
+          </div>
+          <div class="ad-stat-glow"></div>
+        </div>
+        <div class="ad-stat-card ad-stat-closed">
+          <div class="ad-stat-icon"><i class="bi-check-circle-fill"></i></div>
+          <div class="ad-stat-body">
+            <span class="ad-stat-num">{{ stats.closed }}</span>
+            <span class="ad-stat-label">Resolved</span>
+          </div>
+          <div class="ad-stat-glow"></div>
+        </div>
+      </div>
+
+      <!-- ── Table Panel ─────────────────────────────── -->
+      <div class="ad-table-panel">
+
+        <!-- Panel Header -->
+        <div class="ad-panel-header">
+          <div class="ad-panel-title">
+            <i class="bi-table"></i>
+            <span>All Reports</span>
+            <span class="ad-panel-count">{{ filteredReports.length }}</span>
+          </div>
+          <div class="ad-panel-controls">
+            <!-- Search -->
+            <div class="ad-search-wrap">
+              <i class="bi-search ad-search-icon"></i>
+              <input type="text"
+                     class="ad-search-input"
+                     placeholder="Search title or tracking code..."
+                     [(ngModel)]="searchQuery"
+                     (ngModelChange)="applyFilters()" />
+              <button class="ad-search-clear" *ngIf="searchQuery" (click)="searchQuery=''; applyFilters()">
+                <i class="bi-x"></i>
+              </button>
+            </div>
+            <!-- Status Filter -->
+            <div class="ad-filter-pills">
+              <button class="ad-pill" [class.is-active]="statusFilter === ''" (click)="setFilter('')">All</button>
+              <button class="ad-pill ad-pill-pending" [class.is-active]="statusFilter === 'Pending'" (click)="setFilter('Pending')">Pending</button>
+              <button class="ad-pill ad-pill-review" [class.is-active]="statusFilter === 'UnderReview'" (click)="setFilter('UnderReview')">Review</button>
+              <button class="ad-pill ad-pill-action" [class.is-active]="statusFilter === 'AssignmentToGo'" (click)="setFilter('AssignmentToGo')">Action</button>
+              <button class="ad-pill ad-pill-closed" [class.is-active]="statusFilter === 'Closed'" (click)="setFilter('Closed')">Closed</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="ad-loading" *ngIf="isLoading">
+          <div class="ad-loading-spinner"></div>
+          <span>Loading reports...</span>
+        </div>
+
+        <!-- Error -->
+        <div class="ad-error-state" *ngIf="loadError && !isLoading">
+          <i class="bi-exclamation-triangle-fill"></i>
+          <p>{{ loadError }}</p>
+          <button (click)="loadReports()">Retry</button>
+        </div>
+
+        <!-- Empty -->
+        <div class="ad-empty-state" *ngIf="!isLoading && !loadError && filteredReports.length === 0">
+          <i class="bi-inbox"></i>
+          <p>No reports found matching your filters.</p>
+        </div>
+
+        <!-- Table -->
+        <div class="ad-table-wrap" *ngIf="!isLoading && !loadError && filteredReports.length > 0">
+          <table class="ad-table">
+            <thead>
+              <tr>
+                <th (click)="sortBy('createdAt')" class="ad-th-sortable">
+                  Date <i class="bi-chevron-expand ad-sort-icon"></i>
+                </th>
+                <th>Tracking Code</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Evidence</th>
+                <th class="ad-th-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let report of filteredReports">
+                <!-- Table Row -->
+                <tr class="ad-tr" [class.is-expanded]="expandedId === report.id" (click)="toggleExpand(report.id)">
+                  <td class="ad-td-date">
+                    <span class="ad-date-main">{{ report.createdAt | date:'MMM d, yyyy' }}</span>
+                    <span class="ad-date-time">{{ report.createdAt | date:'h:mm a' }}</span>
+                  </td>
+                  <td>
+                    <span class="ad-code-badge">{{ report.anonymousTrackingCode }}</span>
+                  </td>
+                  <td class="ad-td-title">{{ report.title }}</td>
+                  <td>
+                    <span class="ad-type-tag">{{ report.incidentType }}</span>
+                  </td>
+                  <td>
+                    <span class="ad-severity-dot" [ngClass]="'sev-' + (report.severity ?? 'moderate')"></span>
+                    <span class="ad-severity-label">{{ report.severity ?? 'moderate' | titlecase }}</span>
+                  </td>
+                  <td>
+                    <span class="ad-status-badge" [ngClass]="getStatusClass(report.status)">
+                      {{ getStatusDisplay(report.status) }}
+                    </span>
+                  </td>
+                  <td class="ad-td-center">
+                    <span class="ad-ev-count" [class.has-files]="(report.evidenceCount ?? 0) > 0">
+                      <i class="bi-paperclip"></i> {{ report.evidenceCount ?? 0 }}
+                    </span>
+                  </td>
+                  <td class="ad-td-actions" (click)="$event.stopPropagation()">
+                    <button class="ad-action-btn ad-btn-expand" (click)="toggleExpand(report.id)" [title]="expandedId === report.id ? 'Collapse' : 'Expand'">
+                      <i [class]="expandedId === report.id ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+                    </button>
+                    <button class="ad-action-btn ad-btn-delete" (click)="confirmDelete(report)" title="Delete">
+                      <i class="bi-trash3-fill"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Expanded Detail Row -->
+                <tr class="ad-detail-row" *ngIf="expandedId === report.id">
+                  <td colspan="8">
+                    <div class="ad-detail-panel">
+
+                      <div class="ad-detail-grid">
+
+                        <!-- Left: Report Info -->
+                        <div class="ad-detail-left">
+                          <h3 class="ad-detail-heading"><i class="bi-file-text-fill"></i> Report Details</h3>
+                          <div class="ad-detail-fields">
+                            <div class="ad-field">
+                              <label>Title</label>
+                              <span>{{ report.title }}</span>
+                            </div>
+                            <div class="ad-field">
+                              <label>Description</label>
+                              <span class="ad-field-desc">{{ report.description ?? 'No description provided.' }}</span>
+                            </div>
+                            <div class="ad-field-row">
+                              <div class="ad-field">
+                                <label>Incident Type</label>
+                                <span>{{ report.incidentType }}</span>
+                              </div>
+                              <div class="ad-field">
+                                <label>Location</label>
+                                <span>{{ report.location ?? '—' }}</span>
+                              </div>
+                            </div>
+                            <div class="ad-field-row">
+                              <div class="ad-field">
+                                <label>Incident Date</label>
+                                <span>{{ report.incidentDate ?? '—' }}</span>
+                              </div>
+                              <div class="ad-field">
+                                <label>Incident Time</label>
+                                <span>{{ report.incidentTime ?? '—' }}</span>
+                              </div>
+                            </div>
+                            <div class="ad-field-row">
+                              <div class="ad-field">
+                                <label>Reporter Type</label>
+                                <span>{{ report.reporterType ?? '—' }}</span>
+                              </div>
+                              <div class="ad-field">
+                                <label>Victim Name</label>
+                                <span>{{ report.victimName ?? 'Anonymous' }}</span>
+                              </div>
+                            </div>
+                            <div class="ad-field-row">
+                              <div class="ad-field">
+                                <label>Victim Age</label>
+                                <span>{{ report.victimAge ?? '—' }}</span>
+                              </div>
+                              <div class="ad-field">
+                                <label>Contact Info</label>
+                                <span>{{ report.contactInfo ?? 'Not provided' }}</span>
+                              </div>
+                            </div>
+                            <div class="ad-field" *ngIf="report.additionalNotes">
+                              <label>Additional Notes</label>
+                              <span class="ad-field-desc">{{ report.additionalNotes }}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Right: Admin Actions -->
+                        <div class="ad-detail-right">
+                          <h3 class="ad-detail-heading"><i class="bi-shield-lock-fill"></i> Admin Actions</h3>
+
+                          <!-- Status Change -->
+                          <div class="ad-action-section">
+                            <label class="ad-action-label">Update Status</label>
+                            <div class="ad-status-buttons">
+                              <button *ngFor="let s of statusOptions"
+                                      class="ad-status-btn"
+                                      [ngClass]="'sbtn-' + s.value.toLowerCase()"
+                                      [class.is-current]="report.status === s.value"
+                                      (click)="updateStatus(report, s.value)"
+                                      [disabled]="updatingId === report.id">
+                                <i [class]="s.icon"></i> {{ s.label }}
+                              </button>
+                            </div>
+                          </div>
+
+                          <!-- Admin Notes -->
+                          <div class="ad-action-section">
+                            <label class="ad-action-label">Admin Notes / Response</label>
+                            <textarea class="ad-notes-input"
+                                      placeholder="Write a response that will be visible to the reporter via the tracking page..."
+                                      [(ngModel)]="report._draftNotes"
+                                      rows="4"></textarea>
+                            <div class="ad-notes-existing" *ngIf="report.adminNotes && !report._draftNotes">
+                              <i class="bi-chat-square-text-fill"></i>
+                              <span>Current: {{ report.adminNotes }}</span>
+                            </div>
+                            <button class="ad-save-notes-btn"
+                                    (click)="saveNotes(report)"
+                                    [disabled]="updatingId === report.id || !report._draftNotes?.trim()">
+                              <span *ngIf="updatingId !== report.id"><i class="bi-floppy-fill"></i> Save Notes</span>
+                              <span *ngIf="updatingId === report.id"><i class="bi-hourglass-split"></i> Saving...</span>
+                            </button>
+                          </div>
+
+                          <!-- Meta -->
+                          <div class="ad-meta-section">
+                            <div class="ad-meta-item">
+                              <label>Tracking Code</label>
+                              <span class="ad-code-mono">{{ report.anonymousTrackingCode }}</span>
+                            </div>
+                            <div class="ad-meta-item">
+                              <label>Submitted</label>
+                              <span>{{ report.createdAt | date:'MMM d, yyyy — h:mm a' }}</span>
+                            </div>
+                            <div class="ad-meta-item" *ngIf="report.updatedAt">
+                              <label>Last Updated</label>
+                              <span>{{ report.updatedAt | date:'MMM d, yyyy — h:mm a' }}</span>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     DELETE CONFIRM MODAL
+═══════════════════════════════════════════════════ -->
+<div class="ad-modal-overlay" *ngIf="deleteTarget" (click)="cancelDelete()">
+  <div class="ad-modal" (click)="$event.stopPropagation()">
+    <div class="ad-modal-icon"><i class="bi-trash3-fill"></i></div>
+    <h3>Delete Report?</h3>
+    <p>You are about to permanently delete the report <strong>{{ deleteTarget?.title }}</strong> with tracking code <strong>{{ deleteTarget?.anonymousTrackingCode }}</strong>. This cannot be undone.</p>
+    <div class="ad-modal-actions">
+      <button class="ad-modal-cancel" (click)="cancelDelete()">Cancel</button>
+      <button class="ad-modal-confirm" (click)="deleteReport()" [disabled]="isDeleting">
+        <span *ngIf="!isDeleting"><i class="bi-trash3-fill"></i> Delete</span>
+        <span *ngIf="isDeleting"><i class="bi-hourglass-split"></i> Deleting...</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="ad-toast" [class.is-visible]="toast.visible" [class.is-error]="toast.isError">
+  <i [class]="toast.isError ? 'bi-x-circle-fill' : 'bi-check-circle-fill'"></i>
+  {{ toast.message }}
+</div>

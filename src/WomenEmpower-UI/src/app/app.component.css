@@ -1,0 +1,135 @@
+/* ===== FLOATING RIGHT SIDEBAR ===== */
+
+.floating-sidebar {
+    position: fixed;
+    right: -220px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    background: #212529;
+    border-radius: 16px 0 0 16px;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: right 0.35s ease;
+}
+
+.floating-sidebar.open {
+    right: 0;
+}
+
+/* Toggle Button */
+.sidebar-toggle-btn {
+    position: absolute;
+    left: -44px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 50px;
+    background: #212529;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.25);
+    transition: background 0.2s;
+}
+
+.sidebar-toggle-btn:hover {
+    background: #eb4d8b;
+}
+
+/* Sidebar Content */
+.sidebar-content {
+    padding: 20px 15px;
+}
+
+.sidebar-header {
+    color: #eb4d8b;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Sidebar Links */
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-links li {
+    margin-bottom: 6px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.sidebar-link:hover {
+    background: rgba(235, 77, 139, 0.15);
+    color: #eb4d8b;
+    text-decoration: none;
+}
+
+.sidebar-link i {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+/* Quick Exit */
+.sidebar-exit {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-exit-btn {
+    display: block;
+    text-align: center;
+    background: #dc3545;
+    color: #fff;
+    padding: 9px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.sidebar-exit-btn:hover {
+    background: #b02a37;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 9998;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}

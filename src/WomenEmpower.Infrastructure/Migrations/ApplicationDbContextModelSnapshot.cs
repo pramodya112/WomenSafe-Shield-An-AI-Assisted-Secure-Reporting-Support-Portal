@@ -157,26 +157,32 @@ namespace WomenEmpower.Infrastructure.Migrations
 
             modelBuilder.Entity("WomenEmpower.Core.Entities.AIAnalysis", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    b.Property<DateTimeOffset>("AnalysedAt")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<double>("AbuseConfidenceScore")
-                        .HasColumnType("float");
+                    b.Property<string>("DetectedLanguage")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("AnalyzedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("RecommendedAction")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ReportId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("SentimentLabel")
-                        .IsRequired()
+                    b.Property<string>("RiskLevel")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.Property<string>("SentimentScore")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ReportId")
                         .IsUnique();
@@ -203,6 +209,9 @@ namespace WomenEmpower.Infrastructure.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -216,10 +225,6 @@ namespace WomenEmpower.Infrastructure.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("OrganizationName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -255,25 +260,34 @@ namespace WomenEmpower.Infrastructure.Migrations
 
             modelBuilder.Entity("WomenEmpower.Core.Entities.Evidence", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FilePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FileType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
 
                     b.Property<Guid>("ReportId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("UploadedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("StoredName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("UploadedAt")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -282,11 +296,45 @@ namespace WomenEmpower.Infrastructure.Migrations
                     b.ToTable("Evidences");
                 });
 
+            modelBuilder.Entity("WomenEmpower.Core.Entities.IncidentModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SubmittedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Incidents");
+                });
+
             modelBuilder.Entity("WomenEmpower.Core.Entities.Report", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AdditionalNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminNotes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AnonymousTrackingCode")
                         .IsRequired()
@@ -299,10 +347,16 @@ namespace WomenEmpower.Infrastructure.Migrations
                     b.Property<string>("ContactInfo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IncidentDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IncidentTime")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IncidentType")
@@ -313,11 +367,29 @@ namespace WomenEmpower.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Relationship")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReporterType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Severity")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int?>("VictimAge")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VictimName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -400,8 +472,7 @@ namespace WomenEmpower.Infrastructure.Migrations
 
             modelBuilder.Entity("WomenEmpower.Core.Entities.Report", b =>
                 {
-                    b.Navigation("Analysis")
-                        .IsRequired();
+                    b.Navigation("Analysis");
 
                     b.Navigation("Evidence");
                 });
