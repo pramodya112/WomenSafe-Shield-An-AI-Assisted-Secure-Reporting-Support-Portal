@@ -11,7 +11,7 @@
 
 ## 📌 Overview
 
-**SafeReport** is a full-stack web platform designed to empower women in Sri Lanka who have experienced online abuse, harassment, blackmail, domestic violence, stalking, or cyber crimes. It provides legal guidance, reporting tools, emotional support, and an AI-powered chatbot — all in a confidential and trauma-informed environment.
+**SafeReport** is a full-stack web platform designed to empower women in Sri Lanka who have experienced online abuse, harassment, blackmail, domestic violence, stalking, or cyber crimes. It provides legal guidance, reporting tools, emotional support, and an AI-powered chatbot, all in a confidential and trauma-informed environment.
 
 ---
 
